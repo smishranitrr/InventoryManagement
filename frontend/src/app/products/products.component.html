@@ -1,0 +1,81 @@
+<nav class="navbar navbar-inverse navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Products Manager</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="cursor: pointer" (click)="logout()" ><a><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="col-md-4">
+    <div class="login-panel panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Products</h3>
+      </div>
+      <div class="panel-body">
+          <h4 *ngIf="!products?.length > 0">No products added yet</h4>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"  (click)="listClick($event, product)" *ngFor="let product of products; let i = index" [ngClass]="{'active': selectedItem == product}">
+            {{product.name}}
+            <span class="badge badge-primary badge-pill">${{product.price}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+        <div *ngIf="products"  class="products-count" style="text-align: center;background-color: #eaeaea;padding:10px;font-size:20px;">
+            Product Count : {{products.length}}
+          </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="login-panel panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title pull-left">
+                   Products Details
+                </div>
+               <div class="panel-title pull-right">{{selectedItem.name}}</div>
+               <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                      <label for="name" class="control-label">Name</label>
+                      <input type="text" class="form-control" id="name" name="product_name"  [(ngModel)]="name" placeholder="enter name">
+                     
+                    </div>
+                      <label for="price" class="control-label">Price</label>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                      <input type="number"  class="form-control" id="price" name="price"  [(ngModel)]="price" placeholder="enter price">
+                    </div>
+                    <br>
+                    <div class="login-panel panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Rating</h3>
+                                   </div>
+                                   <div class="panel-body">
+                                      <div class="form-group">
+                                          <select  class="form-control" [(ngModel)]="selectedValue" name="ProductId-{{rowIndex}}">
+                                              <option *ngFor="let r of ratings" [ngValue]="r">{{r}}</option>
+                                            </select>
+                                        </div>
+                                   </div>
+                                  </div>
+                      <div class="btn-toolbar pull-right">
+                          <button type="button" id="btnSubmit" class="btn btn-primary btn-sm" (click)="add()">Add</button>
+                          <button type="button" id="btnCancel" class="btn btn-success btn-sm" (click)="edit()">Save</button>
+                          <button type="button" id="btnSubmit" class="btn btn-danger btn-sm" (click)="delete()">Delete</button>
+                          <button type="button" id="btnCancel" class="btn btn-warning btn-sm" (click)="cancel()">Cancel</button>
+                        </div>
+                  </form>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

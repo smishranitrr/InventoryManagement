@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="col-md-4">
+		<div class="login-panel panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Register</h3>
+			</div>
+			<div class="panel-body">
+
+				<legend>Register User</legend>
+				<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+					<div class="form-group" [ngClass]="{ 'has-error': invalidFirstName() }">
+						<!-- First Name -->
+						<label for="first_name" class="control-label">First Name</label>
+						<input type="text" formControlName="first_name" class="form-control" id="first_name"
+							name="first_name" placeholder="enter first name">
+							<p *ngIf="invalidFirstName()" id="first_name_error" class="help-block">Invalid first name.</p>
+					</div>
+
+					<div class="form-group" [ngClass]="{ 'has-error': invalidLastName() }">
+						<!-- Last Name -->
+						<label for="last_name" class="control-label">Last Name</label>
+						<input type="text" formControlName="last_name" class="form-control" id="last_name"
+							name="last_name" placeholder="enter last name">
+							<p *ngIf="invalidLastName()" id="last_name_error" class="help-block">Invalid last name.</p>
+							<p *ngIf="invalidLastName()" id="last_name_error" class="help-block">Invalid last name.</p>
+
+							
+					</div>
+
+					<div class="form-group" [ngClass]="{ 'has-error': invalidEmail() }">
+						<!-- Email -->
+						<label for="email" class="control-label">E-mail</label>
+						<input type="text" formControlName="email" class="form-control" id="email" name="email"
+							placeholder="enter email">
+							<p *ngIf="invalidEmail()" id="email_error" class="help-block">Invalid email address.</p>
+					</div>
+
+					<div class="form-group" [ngClass]="{ 'has-error': invalidPassword() }">
+						<!-- Password -->
+						<label for="password" class="control-label">Password</label>
+						<input type="password" formControlName="password" class="form-control" id="password"
+							name="password" placeholder="enter password">
+							<p *ngIf="invalidPassword()" id="password_error" class="help-block">Invalid password.</p>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Register</button>
+						<span><a (click)="router.navigate(['/login']);" style="cursor:pointer">if already registered go to login page</a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
